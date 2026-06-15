@@ -1,0 +1,11 @@
+node_modules/
+.env
+.DS_Store
+service-account.json
+"AI Grading/service-account.json"
+backend/service-account.json
+backend/ai_artifacts/
+backend/.hf_cache/
+backend/catboost_info/
+*.pkl
+*.safetensors

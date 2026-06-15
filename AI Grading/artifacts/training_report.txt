@@ -1,0 +1,180 @@
+RESALE PRICE MODEL TRAINING REPORT
+================================================================================
+Generated at: 2026-06-15 03:47:50.523248
+Best model: CatBoost Regressor
+
+MODEL COMPARISON
+                    model_name          mae         rmse          mse       r2       mape  cv_mae_mean  cv_mae_std  cv_rmse_mean  cv_rmse_std  cv_r2_mean  cv_r2_std
+            CatBoost Regressor  1559.240525  3218.730162 1.036022e+07 0.988678  11.938479  1663.201749   63.279930   3347.408692   172.947514    0.987798   0.000681
+            LightGBM Regressor  1575.021465  3387.627072 1.147602e+07 0.987459  11.884857  1710.897206   58.624262   3499.066567   183.409079    0.986633   0.001214
+             XGBoost Regressor  1623.969727  3340.492928 1.115889e+07 0.987805  13.012088  1760.078760   75.333687   3573.608838   232.125974    0.986070   0.001368
+HistGradientBoosting Regressor  1659.727228  3627.534532 1.315901e+07 0.985620  11.668037  1738.589357   79.102177   3657.782774   199.829545    0.985396   0.001330
+         Extra Trees Regressor  1868.339264  4198.381689 1.762641e+07 0.980738  12.044716  1987.541321   67.066455   4230.213070   294.806459    0.980510   0.001743
+       Random Forest Regressor  1985.906784  4361.936691 1.902649e+07 0.979208  12.480964  2126.024209  130.417279   4437.715646   343.805176    0.978470   0.002847
+             Linear Regression 10245.363974 16354.239516 2.674612e+08 0.707716 179.339784 10427.192288  118.355659  16519.566355   345.719603    0.702393   0.011588
+              Ridge Regression 10264.801597 16409.164005 2.692607e+08 0.705749 180.712336 10426.330410   93.250972  16542.753793   350.678445    0.701567   0.011440
+
+
+FEATURE SELECTION SUMMARY
+{
+  "excluded_features": {
+    "resale_price": "Target variable. Including it would cause target leakage.",
+    "seller_description": "Excluded from baseline to avoid noisy free-text and possible leakage.",
+    "product_name": "Excluded from baseline to avoid high-cardinality memorization."
+  },
+  "selected_feature_count": 38,
+  "selected_features": [
+    "product_category",
+    "brand",
+    "current_market_price",
+    "purchase_price",
+    "purchase_age_days",
+    "initial_warranty_days",
+    "warranty_left_days",
+    "condition_score",
+    "condition_grade",
+    "scratch_severity",
+    "dent_severity",
+    "crack_severity",
+    "usage_severity",
+    "missing_accessories",
+    "warranty_ratio",
+    "age_years",
+    "defect_score",
+    "weighted_defect_score",
+    "condition_age_interaction",
+    "age_warranty_interaction",
+    "price_retention_ratio",
+    "total_damage_score",
+    "premium_brand_flag",
+    "high_value_product_flag",
+    "electronics_flag",
+    "furniture_flag",
+    "expired_warranty_flag",
+    "long_warranty_flag",
+    "excellent_condition_flag",
+    "heavily_damaged_flag",
+    "market_price_log",
+    "purchase_price_log",
+    "age_log",
+    "warranty_left_log",
+    "condition_squared",
+    "damage_condition_ratio",
+    "is_supported_hackon_category",
+    "missing_accessories_flag"
+  ],
+  "numeric_features": [
+    "current_market_price",
+    "purchase_price",
+    "purchase_age_days",
+    "initial_warranty_days",
+    "warranty_left_days",
+    "condition_score",
+    "scratch_severity",
+    "dent_severity",
+    "crack_severity",
+    "usage_severity",
+    "warranty_ratio",
+    "age_years",
+    "defect_score",
+    "weighted_defect_score",
+    "condition_age_interaction",
+    "age_warranty_interaction",
+    "price_retention_ratio",
+    "total_damage_score",
+    "premium_brand_flag",
+    "high_value_product_flag",
+    "electronics_flag",
+    "furniture_flag",
+    "expired_warranty_flag",
+    "long_warranty_flag",
+    "excellent_condition_flag",
+    "heavily_damaged_flag",
+    "market_price_log",
+    "purchase_price_log",
+    "age_log",
+    "warranty_left_log",
+    "condition_squared",
+    "damage_condition_ratio",
+    "is_supported_hackon_category",
+    "missing_accessories_flag"
+  ],
+  "categorical_features": [
+    "product_category",
+    "brand",
+    "condition_grade",
+    "missing_accessories"
+  ],
+  "feature_selection_logic": "All validated structured features and engineered features are retained for tree/boosting models. Correlation and mutual information reports are exported for analysis. Leakage-prone fields are excluded."
+}
+
+
+HYPERPARAMETER SEARCH DETAILS
+{
+  "Linear Regression": {
+    "best_params": {},
+    "best_cv_neg_mae": null
+  },
+  "Ridge Regression": {
+    "best_params": {
+      "model__alpha": 50.0
+    },
+    "best_cv_neg_mae": -10419.61682760479
+  },
+  "Random Forest Regressor": {
+    "best_params": {
+      "model__n_estimators": 400,
+      "model__min_samples_split": 2,
+      "model__min_samples_leaf": 1,
+      "model__max_depth": 18
+    },
+    "best_cv_neg_mae": -2127.962549594308
+  },
+  "Extra Trees Regressor": {
+    "best_params": {
+      "model__n_estimators": 400,
+      "model__min_samples_split": 2,
+      "model__min_samples_leaf": 1,
+      "model__max_depth": 18
+    },
+    "best_cv_neg_mae": -1967.8043930606993
+  },
+  "HistGradientBoosting Regressor": {
+    "best_params": {
+      "model__max_leaf_nodes": 63,
+      "model__max_iter": 400,
+      "model__learning_rate": 0.08,
+      "model__l2_regularization": 0.1
+    },
+    "best_cv_neg_mae": -1729.2398967857066
+  },
+  "XGBoost Regressor": {
+    "best_params": {
+      "model__subsample": 0.8,
+      "model__n_estimators": 500,
+      "model__max_depth": 5,
+      "model__learning_rate": 0.05,
+      "model__colsample_bytree": 0.9
+    },
+    "best_cv_neg_mae": -1763.9017822265625
+  },
+  "LightGBM Regressor": {
+    "best_params": {
+      "model__subsample": 1.0,
+      "model__num_leaves": 31,
+      "model__n_estimators": 500,
+      "model__learning_rate": 0.05,
+      "model__colsample_bytree": 1.0
+    },
+    "best_cv_neg_mae": -1696.012132640349
+  },
+  "CatBoost Regressor": {
+    "best_params": {
+      "model__learning_rate": 0.05,
+      "model__l2_leaf_reg": 3,
+      "model__iterations": 600,
+      "model__depth": 8
+    },
+    "best_cv_neg_mae": -1669.002633176226
+  }
+}

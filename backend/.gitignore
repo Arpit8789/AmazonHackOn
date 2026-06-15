@@ -1,0 +1,12 @@
+__pycache__/
+*.pyc
+.env
+venv/
+env/
+node_modules/
+ai_artifacts/
+.hf_cache/
+catboost_info/
+*.pkl
+*.safetensors
+service-account.json

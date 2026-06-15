@@ -1,0 +1,42 @@
+2026-06-15 02:47:09,038 | INFO | resale_price_training | Starting resale price model pipeline.
+2026-06-15 02:47:09,038 | INFO | resale_price_training | Arguments: {'data_path': 'dataset.csv', 'output_dir': 'artifacts', 'fast_mode': False}
+2026-06-15 02:47:09,095 | INFO | resale_price_training | Loaded dataset from dataset.csv
+2026-06-15 02:47:09,095 | INFO | resale_price_training | Dataset shape: (10000, 17)
+2026-06-15 02:47:09,095 | INFO | resale_price_training | Starting EDA...
+2026-06-15 02:49:22,203 | INFO | resale_price_training | EDA completed. Reports saved to artifacts\eda
+2026-06-15 02:49:22,212 | INFO | resale_price_training | Starting validation and cleaning...
+2026-06-15 02:49:22,300 | INFO | resale_price_training | Removed duplicate rows: 0
+2026-06-15 02:49:22,345 | INFO | resale_price_training | Removed rows with missing critical numeric fields: 0
+2026-06-15 02:49:22,352 | INFO | resale_price_training | Removed invalid non-positive price rows: 0
+2026-06-15 02:49:22,369 | INFO | resale_price_training | Removed rows with negative numeric values: 0
+2026-06-15 02:49:22,386 | INFO | resale_price_training | Removed invalid condition score rows: 0
+2026-06-15 02:49:22,411 | INFO | resale_price_training | Removed invalid defect severity rows: 0
+2026-06-15 02:49:22,411 | INFO | resale_price_training | Removed impossible warranty rows: 0
+2026-06-15 02:49:22,428 | INFO | resale_price_training | Removed extreme resale price outliers above 125% of market price: 0
+2026-06-15 02:49:22,503 | INFO | resale_price_training | Cleaning completed. Rows before: 10000, rows after: 10000
+2026-06-15 02:49:43,223 | INFO | resale_price_training | Feature selection analysis completed.
+2026-06-15 02:49:43,279 | INFO | resale_price_training | Starting model training...
+2026-06-15 02:49:43,281 | INFO | resale_price_training | Training model: Linear Regression
+2026-06-15 02:49:45,548 | INFO | resale_price_training | Linear Regression | MAE=10245.364 RMSE=16354.240 R2=0.7077 MAPE=179.34%
+2026-06-15 02:49:45,548 | INFO | resale_price_training | Training model: Ridge Regression
+2026-06-15 02:49:56,297 | INFO | resale_price_training | Ridge Regression | MAE=10264.802 RMSE=16409.164 R2=0.7057 MAPE=180.71%
+2026-06-15 02:49:56,297 | INFO | resale_price_training | Training model: Random Forest Regressor
+2026-06-15 03:08:51,850 | INFO | resale_price_training | Random Forest Regressor | MAE=1985.907 RMSE=4361.937 R2=0.9792 MAPE=12.48%
+2026-06-15 03:08:51,852 | INFO | resale_price_training | Training model: Extra Trees Regressor
+2026-06-15 03:20:19,184 | INFO | resale_price_training | Extra Trees Regressor | MAE=1868.339 RMSE=4198.382 R2=0.9807 MAPE=12.04%
+2026-06-15 03:20:19,184 | INFO | resale_price_training | Training model: HistGradientBoosting Regressor
+2026-06-15 03:27:59,307 | INFO | resale_price_training | HistGradientBoosting Regressor | MAE=1659.727 RMSE=3627.535 R2=0.9856 MAPE=11.67%
+2026-06-15 03:27:59,307 | INFO | resale_price_training | Training model: XGBoost Regressor
+2026-06-15 03:31:32,344 | INFO | resale_price_training | XGBoost Regressor | MAE=1623.970 RMSE=3340.493 R2=0.9878 MAPE=13.01%
+2026-06-15 03:31:32,344 | INFO | resale_price_training | Training model: LightGBM Regressor
+2026-06-15 03:36:23,100 | INFO | resale_price_training | LightGBM Regressor | MAE=1575.021 RMSE=3387.627 R2=0.9875 MAPE=11.88%
+2026-06-15 03:36:23,100 | INFO | resale_price_training | Training model: CatBoost Regressor
+2026-06-15 03:47:25,571 | INFO | resale_price_training | CatBoost Regressor | MAE=1559.241 RMSE=3218.730 R2=0.9887 MAPE=11.94%
+2026-06-15 03:47:25,584 | INFO | resale_price_training | Best model selected: CatBoost Regressor
+2026-06-15 03:47:29,032 | INFO | resale_price_training | Evaluation plots saved.
+2026-06-15 03:47:30,867 | INFO | resale_price_training | Feature importance report saved.
+2026-06-15 03:47:50,237 | INFO | resale_price_training | SHAP reports generated.
+2026-06-15 03:47:50,340 | INFO | resale_price_training | Business insights report saved.
+2026-06-15 03:47:50,539 | INFO | resale_price_training | Training report written.
+2026-06-15 03:47:50,539 | INFO | resale_price_training | Pipeline completed successfully.
+2026-06-15 03:47:50,539 | INFO | resale_price_training | Artifacts saved to: D:\HackOn\AI Grading\artifacts

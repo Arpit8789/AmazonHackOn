@@ -1,0 +1,53 @@
+@import "tailwindcss";
+
+@theme {
+  --color-amazon-light: #232F3E;
+  --color-amazon: #131921;
+  --color-amazon-orange: #FF9900;
+  --color-amazon-yellow: #FEBD69;
+  --color-amazon-blue: #007185;
+  --color-amazon-background: #EAEDED;
+  --font-sans: "Amazon Ember", Arial, sans-serif;
+}
+
+@layer base {
+  body {
+    background-color: var(--color-amazon-background);
+    color: #0F1111;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+@layer components {
+  /* Amazon-style Buttons */
+  .btn-yellow {
+    @apply bg-[#FFD814] hover:bg-[#F7CA00] border border-[#FCD200] rounded-full px-4 py-2 text-sm font-medium shadow-sm transition-colors;
+  }
+  
+  .btn-orange {
+    @apply bg-[#FFA41C] hover:bg-[#FA8900] border border-[#FF8F00] rounded-full px-4 py-2 text-sm font-medium shadow-sm transition-colors;
+  }
+  
+  .btn-secondary {
+    @apply bg-white hover:bg-gray-50 border border-[#D5D9D9] rounded-full px-4 py-2 text-sm font-medium shadow-sm transition-colors;
+  }
+
+  /* Amazon-style Cards */
+  .amazon-card {
+    @apply bg-white p-4 border border-[#D5D9D9] shadow-sm;
+  }
+  
+  .amazon-input {
+    @apply border border-[#888C8C] rounded py-1.5 px-3 focus:outline-none focus:border-[#007185] focus:ring-1 focus:ring-[#007185] shadow-sm;
+  }
+
+  /* Hide scrollbar but keep scrolling */
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+}
