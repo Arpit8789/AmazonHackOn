@@ -26,7 +26,7 @@ export default function Home() {
   });
 
   const secondLifeProducts = products?.filter(p => p.is_second_life) || [];
-  const regularProducts = products?.filter(p => !p.is_second_life) || [];
+  const regularProducts = products?.filter(p => !p.is_second_life && !['P004', 'P005'].includes(p.product_id)) || [];
 
   useEffect(() => {
     const timer = setInterval(() => {
