@@ -70,9 +70,13 @@ const ReturnFlow = ({ preSelectedOrder = null, onComplete = null }) => {
   };
 
   const submitForGrading = () => {
-    const angles = initiateData.angle_guide;
-    if (Object.keys(uploadedPhotos).length < angles.length) {
-      alert("Please upload all required photos");
+    const requiredAngles = initiateData.angle_guide.filter(a => !a.toLowerCase().includes('optional'));
+    if (Object.keys(uploadedPhotos).length < requiredAngles.length) {
+      alert(`Please upload at least ${requiredAngles.length} photos`);
+      return;
+    }
+    if (!returnReason) {
+      alert("Please provide a reason for the return");
       return;
     }
     
@@ -160,6 +164,17 @@ const ReturnFlow = ({ preSelectedOrder = null, onComplete = null }) => {
         <div className="bg-white p-6 border border-gray-200 rounded-2xl">
           <h1 className="text-2xl font-bold mb-2">Upload Photos for Return</h1>
           <p className="text-gray-600 mb-6">{initiateData.instructions}</p>
+          
+          <div className="mb-8">
+            <label className="block text-sm font-bold mb-2 text-[#0F1111]">Reason for returning</label>
+            <textarea 
+              className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#008296] focus:border-transparent outline-none resize-none shadow-sm"
+              rows="3"
+              placeholder="Give a proper reason for return so we can process it accurately..."
+              onChange={(e) => setReturnReason(e.target.value)}
+              value={returnReason}
+            ></textarea>
+          </div>
           
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
