@@ -33,13 +33,13 @@ def seed():
     # We add a dummy "Second Life" product to show on the homepage
     second_life_product = Product(
         product_id="P_SL_100",
-        name="Noise ColorFit Pro 4 (Pre-Owned)",
+        name="JBL Flip 6 Portable Bluetooth Speaker (Pre-Owned)",
         category="Electronics",
-        original_price=2999,
-        image_url="https://images.unsplash.com/photo-1546868871-7041f2a55e12?w=400&q=80",
+        original_price=11999,
+        image_url="https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=400&q=80",
         is_second_life=True,
         second_life_grade="B",
-        second_life_price=1299,
+        second_life_price=6999,
         seller_id="user_123"
     )
     db.add(second_life_product)
