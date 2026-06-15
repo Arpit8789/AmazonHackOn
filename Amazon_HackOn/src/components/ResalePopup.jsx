@@ -219,7 +219,41 @@ export default function ResalePopup({ order, onClose }) {
           {step === 2 && aiResult && (
             <div className="space-y-5">
               
-              {/* UI Simplified: AI Grade / Confidence / SHAP factors have been hidden for the user */}
+              {/* AI Pricing Factors */}
+              <div className="bg-[#F0F8FF] border border-[#b2d5d8] rounded-xl p-4">
+                <h4 className="font-bold text-[14px] text-[#007185] mb-2 flex items-center">
+                  <Sparkles size={16} className="mr-2" />
+                  AI Price Analysis
+                </h4>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <h5 className="text-[12px] font-bold text-green-700 mb-1 flex items-center">
+                      <TrendingUp size={12} className="mr-1" /> Positive Value Impacts
+                    </h5>
+                    <ul className="space-y-1">
+                      {aiResult.prediction.top_positive_factors?.slice(0,4).map((factor, i) => (
+                        <li key={i} className="text-[11px] text-gray-700 capitalize">
+                          <span className="text-green-600 mr-1">✓</span> 
+                          {factor.replace(/(num__|cat__)/g, '').replace(/_/g, ' ')}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  <div>
+                    <h5 className="text-[12px] font-bold text-red-700 mb-1 flex items-center">
+                      <TrendingDown size={12} className="mr-1" /> Negative Value Impacts
+                    </h5>
+                    <ul className="space-y-1">
+                      {aiResult.prediction.top_negative_factors?.slice(0,4).map((factor, i) => (
+                        <li key={i} className="text-[11px] text-gray-700 capitalize">
+                          <span className="text-red-600 mr-1">✗</span> 
+                          {factor.replace(/(num__|cat__)/g, '').replace(/_/g, ' ')}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 
