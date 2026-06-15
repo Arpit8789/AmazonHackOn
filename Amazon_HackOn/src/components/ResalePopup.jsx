@@ -234,7 +234,7 @@ export default function ResalePopup({ order, onClose }) {
                       {aiResult.prediction.top_positive_factors?.slice(0,4).map((factor, i) => (
                         <li key={i} className="text-[11px] text-gray-700 capitalize">
                           <span className="text-green-600 mr-1">✓</span> 
-                          {factor.replace(/(num__|cat__)/g, '').replace(/_/g, ' ')}
+                          {factor.split(':')[0].replace(/(num__|cat__)/g, '').replace(/_/g, ' ').trim()}
                         </li>
                       ))}
                     </ul>
@@ -247,7 +247,7 @@ export default function ResalePopup({ order, onClose }) {
                       {aiResult.prediction.top_negative_factors?.slice(0,4).map((factor, i) => (
                         <li key={i} className="text-[11px] text-gray-700 capitalize">
                           <span className="text-red-600 mr-1">✗</span> 
-                          {factor.replace(/(num__|cat__)/g, '').replace(/_/g, ' ')}
+                          {factor.split(':')[0].replace(/(num__|cat__)/g, '').replace(/_/g, ' ').trim()}
                         </li>
                       ))}
                     </ul>
