@@ -27,6 +27,7 @@ async def grade_product(
     original_price: float = Form(0),
     pincode: str = Form("110001"),
     product_name: str = Form(""),
+    image_url: str = Form("https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400&q=80"),
     db: Session = Depends(get_db),
 ):
     """
@@ -65,17 +66,17 @@ async def grade_product(
         else:  # Grade B
             final_price = round(original_price * 0.90)
 
-        # Create a new regular product in DB (Not Second Life)
+        # Create a new Second Life product in DB
         try:
             sl_product = Product(
                 product_id=f"RET_{db.query(Product).count() + 1}",
                 name=product_name if product_name else f"Returned {product_category} Item",
                 category=product_category,
-                original_price=final_price,
-                image_url="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400&q=80",
-                is_second_life=False,
-                second_life_grade=None,
-                second_life_price=None,
+                original_price=original_price,
+                image_url=image_url,
+                is_second_life=True,
+                second_life_grade=grade,
+                second_life_price=final_price,
                 seller_id="user_123"
             )
             db.add(sl_product)

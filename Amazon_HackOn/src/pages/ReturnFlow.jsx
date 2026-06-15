@@ -83,6 +83,8 @@ const ReturnFlow = ({ preSelectedOrder = null, onComplete = null }) => {
     formData.append("product_category", selectedProduct.category);
     formData.append("original_price", selectedProduct.original_price);
     formData.append("pincode", "110001");
+    formData.append("product_name", selectedProduct.name);
+    formData.append("image_url", selectedProduct.image_url);
     
     // Append actual image files
     Object.values(uploadedFiles).forEach(file => {
