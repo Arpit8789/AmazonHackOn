@@ -44,12 +44,12 @@ async def lifespan(app: FastAPI):
     logger.info("  SECOND LIFE COMMERCE — Starting API Server")
     logger.info("=" * 60)
 
-    # 1. Load CLIP
-    try:
-        from models.grading import load_clip_model
-        model_status["clip"] = load_clip_model()
-    except Exception as e:
-        logger.error(f"CLIP load failed (non-fatal): {e}")
+    # 1. Load CLIP (DISABLED TO SAVE RAM)
+    # try:
+    #     from models.grading import load_clip_model
+    #     model_status["clip"] = load_clip_model()
+    # except Exception as e:
+    #     logger.error(f"CLIP load failed (non-fatal): {e}")
 
     # 2. Train XGBoost
     try:
@@ -58,16 +58,16 @@ async def lifespan(app: FastAPI):
     except Exception as e:
         logger.error(f"XGBoost training failed (non-fatal): {e}")
 
-    # 3. Load Sentence Transformer
-    try:
-        from models.reviews import load_review_model, build_review_index
-        model_status["sentence_transformer"] = load_review_model()
+    # 3. Load Sentence Transformer (DISABLED TO SAVE RAM)
+    # try:
+    #     from models.reviews import load_review_model, build_review_index
+    #     model_status["sentence_transformer"] = load_review_model()
 
-        # 4. Build review index
-        if model_status["sentence_transformer"]:
-            model_status["review_index"] = build_review_index()
-    except Exception as e:
-        logger.error(f"Sentence Transformer load failed (non-fatal): {e}")
+    #     # 4. Build review index
+    #     if model_status["sentence_transformer"]:
+    #         model_status["review_index"] = build_review_index()
+    # except Exception as e:
+    #     logger.error(f"Sentence Transformer load failed (non-fatal): {e}")
 
     # 5. Load Gemini Vision (AI Grading)
     try:
