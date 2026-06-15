@@ -144,22 +144,24 @@ export default function Home() {
 
           <div className="flex gap-4 overflow-x-auto pb-4 pt-2 no-scrollbar">
             {regularProducts.map(product => (
-              <div key={product.product_id} className="min-w-[200px] max-w-[200px] flex flex-col cursor-pointer group">
-                <div className="h-[200px] w-full bg-[#f7f7f7] flex items-center justify-center mb-2 relative overflow-hidden">
-                  <img src={product.image_url} className="max-h-[180px] max-w-[180px] object-contain mix-blend-multiply group-hover:scale-105 transition-transform" />
+              <Link key={product.product_id} to={`/product/${product.product_id.replace('P00', '')}`}>
+                <div className="min-w-[200px] max-w-[200px] flex flex-col cursor-pointer group">
+                  <div className="h-[200px] w-full bg-[#f7f7f7] flex items-center justify-center mb-2 relative overflow-hidden">
+                    <img src={product.image_url} className="max-h-[180px] max-w-[180px] object-contain mix-blend-multiply group-hover:scale-105 transition-transform" />
+                  </div>
+                  <div className="text-[21px] font-normal text-[#0F1111] mb-0.5 leading-none">
+                    <span className="text-[13px] align-top mr-0.5">₹</span>{product.original_price}
+                  </div>
+                  <div className="text-[14px] text-[#0F1111] line-clamp-2 hover:text-[#C45500]">
+                    {product.name}
+                  </div>
+                  <div className="flex items-center mt-1">
+                    {[1, 2, 3, 4].map(i => <Star key={i} size={14} fill="#FFA41C" stroke="#FFA41C" />)}
+                    <Star size={14} fill="#E0E0E0" stroke="#E0E0E0" />
+                    <span className="text-[12px] text-[#007185] ml-1">1,234</span>
+                  </div>
                 </div>
-                <div className="text-[21px] font-normal text-[#0F1111] mb-0.5 leading-none">
-                  <span className="text-[13px] align-top mr-0.5">₹</span>{product.original_price}
-                </div>
-                <div className="text-[14px] text-[#0F1111] line-clamp-2 hover:text-[#C45500]">
-                  {product.name}
-                </div>
-                <div className="flex items-center mt-1">
-                  {[1, 2, 3, 4].map(i => <Star key={i} size={14} fill="#FFA41C" stroke="#FFA41C" />)}
-                  <Star size={14} fill="#E0E0E0" stroke="#E0E0E0" />
-                  <span className="text-[12px] text-[#007185] ml-1">1,234</span>
-                </div>
-              </div>
+              </Link>
             ))}
           </div>
         </div>
@@ -174,47 +176,49 @@ export default function Home() {
 
             <div className="flex gap-4 overflow-x-auto pb-4 pt-2 no-scrollbar">
               {secondLifeProducts.map(product => (
-                <div key={product.product_id} className="min-w-[200px] max-w-[200px] flex flex-col cursor-pointer group">
-                  <div className="h-[200px] w-full bg-[#f7f7f7] flex items-center justify-center mb-2 relative overflow-hidden">
-                    <img src={product.image_url} className="max-h-[180px] max-w-[180px] object-contain mix-blend-multiply group-hover:scale-105 transition-transform" />
-                    <div className="absolute top-0 left-0 bg-[#0F1111] text-white text-[10px] font-bold px-2 py-0.5 rounded-br-lg shadow-sm">
-                      <ShieldCheck size={10} className="inline mr-1" /> 6 Months Warranty
+                <Link key={product.product_id} to="/product/1">
+                  <div className="min-w-[200px] max-w-[200px] flex flex-col cursor-pointer group">
+                    <div className="h-[200px] w-full bg-[#f7f7f7] flex items-center justify-center mb-2 relative overflow-hidden">
+                      <img src={product.image_url} className="max-h-[180px] max-w-[180px] object-contain mix-blend-multiply group-hover:scale-105 transition-transform" />
+                      <div className="absolute top-0 left-0 bg-[#0F1111] text-white text-[10px] font-bold px-2 py-0.5 rounded-br-lg shadow-sm">
+                        <ShieldCheck size={10} className="inline mr-1" /> 6 Months Warranty
+                      </div>
                     </div>
+
+                    {/* Instant Discount */}
+                    <div className="flex items-center text-xs mb-1">
+                      <span className="bg-[#CC0C39] text-white px-1.5 py-0.5 font-bold mr-2 rounded-sm text-[11px]">
+                        -{Math.round((1 - product.second_life_price / product.original_price) * 100)}%
+                      </span>
+                      <span className="text-[#CC0C39] font-bold text-[12px]">Instant Discount</span>
+                    </div>
+
+                    <div className="text-[21px] font-normal text-[#0F1111] mb-0.5 leading-none">
+                      <span className="text-[13px] align-top mr-0.5">₹</span>{product.second_life_price}
+                    </div>
+
+                    <div className="text-[12px] text-gray-500 mb-1">
+                      M.R.P.: <span className="line-through">₹{product.original_price}</span>
+                    </div>
+
+                    <div className="text-[14px] text-[#0F1111] line-clamp-2 hover:text-[#C45500]">
+                      {product.name}
+                    </div>
+
+                    {/* Grade indicator removed per user request */}
+
+                    <button
+                      onClick={(e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        window.dispatchEvent(new Event('addToCart'));
+                      }}
+                      className="mt-2 bg-[#FFD814] hover:bg-[#F7CA00] text-[#0F1111] text-[12px] py-1.5 px-3 rounded-full font-medium w-full shadow-sm z-10 relative"
+                    >
+                      Add to Cart
+                    </button>
                   </div>
-
-                  {/* Instant Discount */}
-                  <div className="flex items-center text-xs mb-1">
-                    <span className="bg-[#CC0C39] text-white px-1.5 py-0.5 font-bold mr-2 rounded-sm text-[11px]">
-                      -{Math.round((1 - product.second_life_price / product.original_price) * 100)}%
-                    </span>
-                    <span className="text-[#CC0C39] font-bold text-[12px]">Instant Discount</span>
-                  </div>
-
-                  <div className="text-[21px] font-normal text-[#0F1111] mb-0.5 leading-none">
-                    <span className="text-[13px] align-top mr-0.5">₹</span>{product.second_life_price}
-                  </div>
-
-                  <div className="text-[12px] text-gray-500 mb-1">
-                    M.R.P.: <span className="line-through">₹{product.original_price}</span>
-                  </div>
-
-                  <div className="text-[14px] text-[#0F1111] line-clamp-2 hover:text-[#C45500]">
-                    {product.name}
-                  </div>
-
-                  {/* Grade indicator removed per user request */}
-
-                  <button
-                    onClick={(e) => {
-                      e.preventDefault();
-                      e.stopPropagation();
-                      window.dispatchEvent(new Event('addToCart'));
-                    }}
-                    className="mt-2 bg-[#FFD814] hover:bg-[#F7CA00] text-[#0F1111] text-[12px] py-1.5 px-3 rounded-full font-medium w-full shadow-sm z-10 relative"
-                  >
-                    Add to Cart
-                  </button>
-                </div>
+                </Link>
               ))}
             </div>
           </div>
