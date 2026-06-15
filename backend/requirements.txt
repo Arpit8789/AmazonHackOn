@@ -8,6 +8,11 @@ fastapi==0.115.0
 uvicorn[standard]==0.30.0
 python-multipart==0.0.9
 pydantic==2.8.0
+sqlalchemy==2.0.31
+psycopg2-binary==2.9.9
+python-dotenv==1.0.1
+google-genai==0.3.0
+pandas==2.2.2
 
 # ML / AI
 torch==2.3.1
@@ -15,6 +20,7 @@ torchvision==0.18.1
 transformers==4.44.0
 sentence-transformers==3.0.1
 xgboost==2.1.0
+catboost==1.2.5
 shap==0.45.1
 scikit-learn==1.5.1
 numpy==1.26.4
