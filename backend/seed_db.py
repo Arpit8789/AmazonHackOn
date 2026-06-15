@@ -94,6 +94,34 @@ def seed():
     )
     db.add(order3)
 
+    # Product 4: Eligible for Resell (Smartwatch)
+    order4 = Order(
+        order_id="ORD-1004",
+        user_id="user_123",
+        product_db_id=4,  # P004 Smartwatch
+        purchase_date="12 Jan 2026",
+        warranty_months=12,
+        weight_kg=0.12,
+        status="DELIVERED",
+        return_eligible=False, # Too old for return
+        resell_eligible=True
+    )
+    db.add(order4)
+    
+    # Product 5: Eligible for Return (Water Bottle)
+    order5 = Order(
+        order_id="ORD-1005",
+        user_id="user_123",
+        product_db_id=5,  # P005 Water Bottle
+        purchase_date="12 Jun 2026", # Recent
+        warranty_months=12,
+        weight_kg=0.4,
+        status="DELIVERED",
+        return_eligible=True,
+        resell_eligible=False
+    )
+    db.add(order5)
+
     db.commit()
     db.close()
     
