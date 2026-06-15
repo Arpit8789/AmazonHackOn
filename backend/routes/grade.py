@@ -72,11 +72,11 @@ async def grade_product(
                 product_id=f"RET_{db.query(Product).count() + 1}",
                 name=product_name if product_name else f"Returned {product_category} Item",
                 category=product_category,
-                original_price=original_price,
+                original_price=final_price,
                 image_url=image_url,
-                is_second_life=True,
-                second_life_grade=grade,
-                second_life_price=final_price,
+                is_second_life=False,
+                second_life_grade=None,
+                second_life_price=None,
                 seller_id="user_123"
             )
             db.add(sl_product)
