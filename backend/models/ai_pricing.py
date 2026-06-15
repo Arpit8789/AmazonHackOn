@@ -104,8 +104,16 @@ def predict_resale_price(product_data: Dict[str, Any]) -> Dict[str, Any]:
 
     try:
         result = _inference_engine.explain_prediction(product_data)
+        
+        original_price = float(product_data.get("purchase_price", 0) or product_data.get("original_price", 0))
+        predicted = float(result["predicted_resale_price"])
+        
+        # Cap resale price at 95% of original price to prevent unrealistic appreciation
+        if original_price > 0 and predicted > (original_price * 0.95):
+            predicted = original_price * 0.95
+            
         return {
-            "predicted_resale_price": result["predicted_resale_price"],
+            "predicted_resale_price": round(predicted, 2),
             "confidence_score": result["confidence_score"],
             "top_positive_factors": result.get("top_positive_factors", []),
             "top_negative_factors": result.get("top_negative_factors", []),
