@@ -9,3 +9,5 @@ backend/.hf_cache/
 backend/catboost_info/
 *.pkl
 *.safetensors
+AI Grading/artifacts/
+AI Grading/catboost_info/
